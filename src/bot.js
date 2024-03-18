@@ -1,5 +1,9 @@
 import TelegramBot from "node-telegram-bot-api";
 import { TOKEN } from "../config.js";
+import { readFile } from "fs/promises";
+const data = JSON.parse(
+  await readFile(new URL("../data/urls.json", import.meta.url)),
+);
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
@@ -8,7 +12,7 @@ export const startBot = () => {
     { command: "/start", description: "Начать работу с ботом" },
     { command: "/get_recipe", description: "Получить рецепт" },
     { command: "/get_recipe_of_a_day", description: "Получить рецепт дня" },
-    { command: "/katya_love", description: "Получить любовь" },
+    // { command: "/katya_love", description: "Получить любовь" },
   ]);
 
   bot.on("message", async (msg) => {
@@ -20,7 +24,9 @@ export const startBot = () => {
     }
 
     if (text === "/get_recipe" || text === "/get_recipe@notaddtry_recipe_bot") {
-      return bot.sendMessage(chatId, "Находится в разработке");
+      const random = Math.floor(Math.random() * data.length);
+
+      return bot.sendMessage(chatId, data[random][0]);
     }
 
     if (

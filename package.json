@@ -1,18 +1,17 @@
 {
   "name": "telegram_recipe_bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "telegram recipe bot",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
     "prod": "node index.js",
-    "updateData": "python ./parser/bs4_parser/parse_povarenok_ru.py --save_path data",
-    "convert": "node converter.js"
+    "updateData": "python parser/bs4_parser/parse.py --save_path data"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "notaddtry",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "dependencies": {
     "dotenv": "^16.4.5",
     "node-telegram-bot-api": "^0.65.1"
